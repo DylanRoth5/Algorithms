@@ -8,7 +8,7 @@ match lang:
         print("you")
 
     case "exit":
-        exit(0)
+        exit()
     
     case _:
         print("soul.")
