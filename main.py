@@ -1,14 +1,17 @@
-lang = input("input: ")
+lang = 0
 
-match lang:
-    case "one":
-        print("tupid.")
+while True:
+    lang = input("input: ")
 
-    case "tupid":
-        print("you")
+    match lang:
+        case "one":
+            print("tupid.")
 
-    case "exit":
-        exit()
-    
-    case _:
-        print("soul.")
+        case "tupid":
+            print("you")
+
+        case "exit":
+            exit()
+        
+        case _:
+            print("soul.")
