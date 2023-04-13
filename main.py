@@ -11,4 +11,4 @@ match lang:
         exit(0)
     
     case _:
-        print("The language doesn't matter, what matters is solving problems.")
+        print("soul.")
