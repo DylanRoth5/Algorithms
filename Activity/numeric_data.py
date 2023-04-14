@@ -1,28 +1,6 @@
 from math import sqrt
 from Tools.terminal_help import *
 
-def get_ABC():
-    A = gint('value of A: ')
-    B = gint('value of B: ')
-    C = gint('value of C: ')
-    return A,B,C
-
-def getf_ABC():
-    A = gf('value of A: ')
-    B = gf('value of B: ')
-    C = gf('value of C: ')
-    return A,B,C
-
-def get_AB():
-    A = gint('value of A: ')
-    B = gint('value of B: ')
-    return A,B
-
-def get_AB(text1,text2):
-    A = gint(text1)
-    B = gint(text2)
-    return A,B
-
 def sum_ABC():
     A,B,C = get_ABC()
     print(f'La suma de {A}, {B} y {C} es: {A + B + C}')
