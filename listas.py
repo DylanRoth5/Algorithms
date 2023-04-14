@@ -1,9 +1,20 @@
+main_menu = ['Menu Principal',
+             'Actividades',
+             'Trabajos Practicos',
+             'Salir']
 
-menu = ['Menu Principal',
+activity_menu = ['Menu Principal',
         'Datos Numéricos',
      'Datos Booleanos y Strings',
      'Manipulación de Strings',
      'Funciones, Condicionales, iteración y recursividad',
+     'Salir']
+
+work_menu = ['Menu Principal',
+        'Cola de Supermercado',
+     'Cifrado Cesar',
+     'Enigma Machine',
+     'Estadisticas Censo 2010',
      'Salir']
 
 numerical_menu = ['Datos Numéricos',
