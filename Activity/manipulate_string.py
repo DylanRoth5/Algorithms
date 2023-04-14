@@ -14,16 +14,29 @@ def string_to_list():
     print(lista)
 
 def string_order():
-    print()
+    string = ['monkey', 'elefant', 'Okapi', 'Wolf', 'Fossa', 'Blue Dragon', 'Spider Crab', 'Loris', 'Rabbit', 'Axolotl']
+    string.sort()
+    print(string)
 
 def array_of_five():
-    print()
+    my_array = [1, 2, 3, 4, 5]
+    print(my_array)
 
 def tour_array():
-    print()
+    my_array = [1, 2, 3, 4, 5]
+    for element in my_array:
+        print(element)
 
 def sum_array_elements():
-    print()
+    my_array = [1, 2, 3, 4, 5]
+    sum_of_array = sum(my_array)
+    print(sum_of_array)
 
 def add_on_arrays():
-    print()
+    my_array = [1, 2, 3, 4, 5]
+    my_array.insert(2, 6)
+    my_array = my_array + [7, 8]
+    my_array[2:2] = [9, 10]
+    my_array.extend([11, 12])
+    print(my_array)
+
