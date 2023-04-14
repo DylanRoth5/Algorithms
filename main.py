@@ -39,11 +39,8 @@ def handle_activity_menu(choice):
             HF.handle_input(sub_choice)
         case  "0":
             print("¡Adiós!")
-            exit()
         case _:
             print("Opción inválida. Por favor, intenta nuevamente.")
-        
-    print_menu_options(list.main_menu)
 
 # Practic Work menu handler
 def handle_work_menu(choice):
@@ -58,7 +55,6 @@ def handle_work_menu(choice):
             print('a')
         case  "0":
             print("¡Adiós!")
-            exit()
         case _:
             print("Opción inválida. Por favor, intenta nuevamente.")
 
@@ -76,9 +72,9 @@ while True:
             sub_choice = input("Ingresa el número de la opción que deseas: ")
             handle_activity_menu(sub_choice)
         case  "2":
-            print_menu_options(list.boolean_string_menu)
+            print_menu_options(list.work_menu)
             sub_choice = input("Ingresa el número de la opción que deseas: ")
-            HBS.handle_input(sub_choice)
+            handle_work_menu(sub_choice)
         case  "0":
             print("¡Adiós!")
             exit()

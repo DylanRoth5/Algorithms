@@ -1,4 +1,4 @@
-from Work.numeric_data import *
+from Activity.numeric_data import *
 
 # Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
 def handle_input(choice):
@@ -21,6 +21,5 @@ def handle_input(choice):
             wardrobe()
         case  "0":
             print("¡Adiós!")
-            exit()
         case _:
             print("Opción inválida. Por favor, intenta nuevamente.")
