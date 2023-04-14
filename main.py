@@ -1,8 +1,8 @@
 import listas as list
-from handling.handle_numeric import *
-from handling.handle_bool_string import *
-from handling.handle_manipulation import *
-from handling.handle_functions import *
+from handling import handle_numeric as HN
+from handling import handle_bool_string as HBS
+from handling import handle_manipulation as HM 
+from handling import handle_functions as HF
 
 # Define function to print menu
 def print_menu_options(options_list):
@@ -13,10 +13,6 @@ def print_menu_options(options_list):
             print("\033[91m0. " + option + "\033[0m\n")
         else:
             print("\033[92m" + f"{index}. {option}" + "\033[0m")
-
-# Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
-def handle_input(choice):
-    print("\nEsta opción aún no ha sido implementada.\n")
 
 # Print menu initially
 print_menu_options(list.menu)
@@ -30,22 +26,22 @@ while True:
             # Show sub-menu for option 1 "Datos Numéricos"
             print_menu_options(list.numerical_menu)
             sub_choice = input("Ingresa el número de la opción que deseas: ")
-            handle_input(sub_choice)
+            HN.handle_input(sub_choice)
         case  "2":
             # Show sub-menu for option 2 "Datos Booleanos y Strings"
             print_menu_options(list.boolean_string_menu)
             sub_choice = input("Ingresa el número de la opción que deseas: ")
-            handle_input(sub_choice)
+            HBS.handle_input(sub_choice)
         case  "3":
             # Show sub-menu for option 3 "Manipulación de Strings"
             print_menu_options(list.string_manipulation_menu)
             sub_choice = input("Ingresa el número de la opción que deseas: ")
-            handle_input(sub_choice)
+            HM.handle_input(sub_choice)
         case  "4":
             # Show sub-menu for option 4 "Funciones, Condicionales, iteración y recursividad"
             print_menu_options(list.functions_menu)
             sub_choice = input("Ingresa el número de la opción que deseas: ")
-            handle_input(sub_choice)
+            HF.handle_input(sub_choice)
         case  "0":
             print("¡Adiós!")
             exit()
