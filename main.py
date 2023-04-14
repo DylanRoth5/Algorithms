@@ -1,5 +1,8 @@
 import listas as list
-import handling as handle
+from handling.handle_numeric import *
+from handling.handle_bool_string import *
+from handling.handle_manipulation import *
+from handling.handle_functions import *
 
 # Define function to print menu
 def print_menu_options(options_list):
