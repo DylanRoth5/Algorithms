@@ -5,7 +5,7 @@ def handle_input(choice):
     match choice:
         case '1':
             sum_ABC()
-        case '1':
+        case '2':
             mul_ABC()
         case  "0":
             print("¡Adiós!")
