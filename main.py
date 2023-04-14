@@ -4,15 +4,15 @@ import listas as list
 def print_menu_options(options_list):
     for index, option in enumerate(options_list):
         if index == 0:
-            print("\n" + option.upper()+'\n')
+            print("\n\033[1;34;4m" + option.upper() + "\033[0m\n")
         elif index == len(options_list) - 1:
-            print("0. " + option + "\n")
+            print("\033[91m0. " + option + "\033[0m\n")
         else:
-            print(f"{index}. {option}")
+            print("\033[92m" + f"{index}. {option}" + "\033[0m")
 
 # Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
 def handle_input(choice):
-    print("Esta opción aún no ha sido implementada.\n")
+    print("\nEsta opción aún no ha sido implementada.\n")
 
 # Print menu initially
 print_menu_options(list.menu)
