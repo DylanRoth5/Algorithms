@@ -5,3 +5,7 @@ def ginp(text):
 def gint(text):
     value = int(input(text))
     return value
+
+def gf(text):
+    value = float(input(text))
+    return value

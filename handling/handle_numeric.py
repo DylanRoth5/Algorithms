@@ -7,6 +7,18 @@ def handle_input(choice):
             sum_ABC()
         case '2':
             mul_ABC()
+        case '3':
+            rest_AB()
+        case '4':
+            power_AB()
+        case '5':
+            root_C()
+        case '6':
+            pitagoras_AB()
+        case '7':
+            Quadratic_formula()
+        case '8':
+            wardrobe()
         case  "0":
             print("¡Adiós!")
             exit()
