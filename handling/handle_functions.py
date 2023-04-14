@@ -1,22 +1,22 @@
-from Activity.manipulate_string import *
+from Activity.functions import *
 
 # Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
 def handle_input(choice):
     match choice:
         case '1':
-            sum_ABC()
+            fibonacci()
         case '2':
-            mul_ABC()
+            triangle_type()
         case '3':
-            rest_AB()
+            roman_numbers()
         case '4':
-            power_AB()
+            arithmetic_or_weighted_average()
         case '5':
-            root_C()
+            factorial()
         case '6':
-            pitagoras_AB()
+            digit_sum()
         case '7':
-            Quadratic_formula()
+            horse_run()
         case  "0":
             print("¡Adiós!")
         case _:

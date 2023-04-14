@@ -57,8 +57,11 @@ string_manipulation_menu = ['Manipulación de Strings',
      'Salir']
 
 functions_menu = ['Funciones, Condicionales, iteración y recursividad',
-        'Datos Numéricos',
-     'Datos Booleanos y Strings',
-     'Manipulación de Strings',
-     'Funciones, Condicionales, iteración y recursividad',
+        'Lista de fibonacci',
+     'Tipo de triangulo',
+     'Conversion a numeros romanos',
+     'Promedio aritmetico o ponderado',
+     'Factorial de un numero',
+     'Suma de digitos',
+     'Carrera de caballos',
      'Salir']
