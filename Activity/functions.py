@@ -1,7 +1,16 @@
 from Tools.terminal_help import *
 
 def fibonacci():
-    print()
+    amount = gint('Cuantos numeros de fibonacci necesitas? ')
+    num = 1
+    num_min1 = 0
+    i = 0
+    print(f'{num_min1} -> {num}',end='')
+    while i<amount:
+        num+=num_min1
+        num_min1=num-num_min1
+        print(f' -> {num}',end='')
+        i+=1
 
 def triangle_type():
     print()
