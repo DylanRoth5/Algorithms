@@ -23,7 +23,7 @@ def get_ABCD(text1,text2,text3,text4):
     D = gint(text4)
     return A,B,C,D
 
-def get_ABCD(text1,text2,text3):
+def get_ABC(text1,text2,text3):
     A = gint(text1)
     B = gint(text2)
     C = gint(text3)

@@ -46,7 +46,7 @@ def handle_activity_menu(choice):
 def handle_work_menu(choice):
     match choice:
         case "1":
-            print('a')
+                print('a')
         case  "2":
             print('a')
         case  "3":

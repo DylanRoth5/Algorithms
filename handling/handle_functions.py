@@ -12,7 +12,7 @@ def handle_input(choice):
         case '4':
             arithmetic_or_weighted_average()
         case '5':
-            factorial()
+            factorial_impar()
         case '6':
             digit_sum()
         case '7':
