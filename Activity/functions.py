@@ -115,20 +115,6 @@ def digit_sum():
     
     print(f'la suma de los digitos es: {sum}')
 
-import sys
-
-def delete_last_line():
-    # cursor up one line
-    sys.stdout.write('\x1b[1A')
-    # delete last line
-    sys.stdout.write('\x1b[2K')
-
-def what():
-    delete_last_line()
-    delete_last_line()
-    delete_last_line()
-    delete_last_line()
-
 def horse_run():
     index=0
     while True:
@@ -146,7 +132,7 @@ def horse_run():
                 caballo['posicion'] += random.randint(1, 5)
                 print(f'{caballo["nombre"]} está en el metro {caballo["posicion"]}')
                 if(index == 4):
-                    what()
+                    delete4lines()
                     index = 0                
                     time.sleep(0.5)
 

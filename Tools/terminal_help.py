@@ -44,3 +44,17 @@ def get_AB(text1,text2):
     A = gint(text1)
     B = gint(text2)
     return A,B
+
+import sys
+
+def delete_last_line():
+    # cursor up one line
+    sys.stdout.write('\x1b[1A')
+    # delete last line
+    sys.stdout.write('\x1b[2K')
+
+def delete4lines():
+    delete_last_line()
+    delete_last_line()
+    delete_last_line()
+    delete_last_line()
