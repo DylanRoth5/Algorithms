@@ -1,6 +1,7 @@
 from Tools.terminal_help import *
 import random
 import time
+import listas
 
 def fibonacci():
     amount = gint('Cuantos numeros de fibonacci necesitas? ')
@@ -121,27 +122,37 @@ def horse_run():
         pista_longitud = 1000
         num_caballos = 4
         caballos = []
+        todos_en_meta=0
         for i in range(num_caballos):
-            caballos.append({'nombre': f'Caballo {i+1}', 'posicion': 0})
+            caballos.append({'nombre': f'Caballo {i+1}', 'posicion': 0, 'llego': bool(False)})
         carrera_terminada = False
         
         while not carrera_terminada:
             for caballo in caballos:
                 time.sleep(0)
+
+                if ((caballo['posicion'] >= pista_longitud) and (caballo['llego'] == False)):
+                    todos_en_meta+=1
+                    caballo["llego"] = True
+                    print(f'{caballo["nombre"]} ha llegado a la meta!')
+                elif((caballo['posicion'] >= pista_longitud) and (caballo['llego'] == True)):
+                    print(f'{caballo["nombre"]} ha llegado a la meta!')
+                else:
+                    caballo['posicion'] += random.randint(1, 5)
+                    print(f'{caballo["nombre"]} está en el metro {caballo["posicion"]}')
+
                 index+=1
-                caballo['posicion'] += random.randint(1, 5)
-                print(f'{caballo["nombre"]} está en el metro {caballo["posicion"]}')
                 if(index == 4):
                     delete4lines()
                     index = 0                
-                    time.sleep(0.5)
+                    time.sleep(0.01)
 
-                if caballo['posicion'] >= pista_longitud:
+                if todos_en_meta==4:
                     print(f'{caballo["nombre"]} ha llegado a la meta!')
                     caballos.sort(key=lambda x: x['posicion'], reverse=True)
                     print('Podio:')
-                    for i, c in enumerate(caballos[:3]):
-                        print(f'{i+1}. {c["nombre"]}')
+                    for i, c in enumerate(caballos[:4]):
+                        print(f'{i+1}. {c["nombre"]}, metros totales: {c["posicion"]}')
                     carrera_terminada = True
                     break
             
@@ -149,3 +160,41 @@ def horse_run():
         continuar = input('¿Quieres iniciar otra carrera? (s/n): ')
         if continuar.lower() != 's':
             break
+
+
+def print_menu_options(options_list):
+    for index, option in enumerate(options_list):
+        if index == 0:
+            print("\n\033[1;34;4m" + option.upper() + "\033[0m\n")
+        elif index == len(options_list) - 1:
+            print("\033[91m0. " + option + "\033[0m\n")
+        else:
+            print("\033[92m" + f"{index}. {option}" + "\033[0m")
+
+def buffer():
+    buffer = []
+    while True:
+        print_menu_options(listas.printer_menu)
+        try:
+            select = gint("Ingresa el número de la opción que deseas: ")
+        except ValueError:
+            print('that is not a number') 
+        match select:
+            case 1:
+                if len(buffer)<20:
+                    doc_name = ginp('nombre del documento: ')
+                    buffer.append(doc_name)
+                    print('agregado documento...')
+                else:
+                    print('memory capacity reached.')
+            case 2:
+                if len(buffer)>0:
+                    buffer.pop(0)
+                    print('imprimiendo documento')
+                else:
+                    print('There is nothing to print.')
+            case 3:
+                print(buffer)
+            case 0:
+                print('Adios')
+                break

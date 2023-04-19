@@ -64,4 +64,11 @@ functions_menu = ['Funciones, Condicionales, iteración y recursividad',
      'Factorial de un numero',
      'Suma de digitos',
      'Carrera de caballos',
+     'Buffer de impresion',
      'Salir']
+
+printer_menu = ['Menu de impresora',
+                'Agregar documento',
+                'Imprimir documento',
+                'Documento en cola para imprimir',
+                'Salir']

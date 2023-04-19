@@ -17,6 +17,8 @@ def handle_input(choice):
             digit_sum()
         case '7':
             horse_run()
+        case '8':
+            buffer()
         case  "0":
             print("¡Adiós!")
         case _:
