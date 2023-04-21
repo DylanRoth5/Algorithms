@@ -9,7 +9,7 @@ def fibonacci():
     num_min1 = 0
     i = 0
     print(f'{num_min1} -> {num}',end='')
-    while i<amount:
+    while i<amount-2:
         num+=num_min1
         num_min1=num-num_min1
         print(f' -> {num}',end='')
@@ -142,24 +142,22 @@ def horse_run():
                     print(f'{caballo["nombre"]} está en el metro {caballo["posicion"]}')
 
                 index+=1
-                if(index == 4):
-                    delete4lines()
-                    index = 0                
+                if(index == 4 and not(todos_en_meta==4)):
+                    delete_lines(4)
+                    index = 0
                     time.sleep(0.01)
 
                 if todos_en_meta==4:
-                    print(f'{caballo["nombre"]} ha llegado a la meta!')
+                    time.sleep(1)
                     caballos.sort(key=lambda x: x['posicion'], reverse=True)
-                    print('Podio:')
+                    print('\nPodio:')
                     for i, c in enumerate(caballos[:4]):
+                        time.sleep(0.01)
                         print(f'{i+1}. {c["nombre"]}, metros totales: {c["posicion"]}')
                     carrera_terminada = True
                     break
             
-
-        continuar = input('¿Quieres iniciar otra carrera? (s/n): ')
-        if continuar.lower() != 's':
-            break
+        break
 
 
 def print_menu_options(options_list):
@@ -171,9 +169,13 @@ def print_menu_options(options_list):
         else:
             print("\033[92m" + f"{index}. {option}" + "\033[0m")
 
+import os
+clear = lambda: os.system('cls')
+
 def buffer():
     buffer = []
     while True:
+        clear()
         print_menu_options(listas.printer_menu)
         try:
             select = gint("Ingresa el número de la opción que deseas: ")
@@ -189,12 +191,20 @@ def buffer():
                     print('memory capacity reached.')
             case 2:
                 if len(buffer)>0:
+                    punto = ''
+                    for i in range(3):
+                        punto+= '.'
+                        print(f'Imprimiendo documento{punto}')
+                        delete_lines(1)
+                        time.sleep(0.5)
+                    
+                    print()
                     buffer.pop(0)
-                    print('imprimiendo documento')
                 else:
-                    print('There is nothing to print.')
+                    print('No hay nada para imprimir.')
             case 3:
                 print(buffer)
+                nada = input('Presiona [Enter] para volver')
             case 0:
                 print('Adios')
                 break

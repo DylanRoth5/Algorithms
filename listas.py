@@ -3,14 +3,14 @@ main_menu = ['Menu Principal',
              'Trabajos Practicos',
              'Salir']
 
-activity_menu = ['Menu Principal',
+activity_menu = ['Menu de Actividades',
         'Datos Numéricos',
      'Datos Booleanos y Strings',
      'Manipulación de Strings',
      'Funciones, Condicionales, iteración y recursividad',
      'Salir']
 
-work_menu = ['Menu Principal',
+work_menu = ['Menu de Trabajos Practicos',
         'Cola de Supermercado',
      'Cifrado Cesar',
      'Enigma Machine',

@@ -53,8 +53,19 @@ def delete_last_line():
     # delete last line
     sys.stdout.write('\x1b[2K')
 
-def delete4lines():
-    delete_last_line()
-    delete_last_line()
-    delete_last_line()
-    delete_last_line()
+def delete_lines(amount):
+    for i in range(amount):
+        delete_last_line()  
+
+import os
+clear = lambda: os.system('cls')
+
+def print_menu_options(options_list):
+    clear()
+    for index, option in enumerate(options_list):
+        if index == 0:
+            print("\033[1;34;4m" + option.upper() + "\033[0m\n")
+        elif index == len(options_list) - 1:
+            print("\033[91m0. " + option + "\033[0m\n")
+        else:
+            print("\033[92m" + f"{index}. {option}" + "\033[0m")
