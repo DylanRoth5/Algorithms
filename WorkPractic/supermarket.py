@@ -50,6 +50,11 @@ cajas = [
     [], #cola de la caja 2
 ]
 
+cant_atendidos = [
+    [],
+    []
+]
+
 cantidad_de_cajas = len(cajas) #para determinar con cuantas cajas se trabaja una jornada
 
 
@@ -105,33 +110,40 @@ while(minuto <= fin_de_la_jornada):
     #LOGICA DE LA SALIDA DE CAJA
     #incrementar el contador de la persona que está en caja en 1 minuto. evaluar si ya llega al fin de tiempo determinado para atendderlo
     for caja in cajas:
-        if ((len(caja)==0) and (len(fila)>0)):
+
+        if ((len(caja)==0) and (len(fila)>0)): #checkeo que haya una caja disponible y que haya personas en la fila
             index = 0
-            for persona in fila:
-                if(index == 0):
+            for persona in fila: #chequeo cada persona en la fila (probablemente se puede optimizar, esta es la forma mas sencilla que encontre)
+                if(index == 0): #tomo la primera persona en la fila
                     entrante = persona
                     index+=1        
-            caja.append(entrante)
+            caja.append(entrante) #la primera persona entra a la caja
             print('\033[34m' + 'A las '+ str(tiempo) + ' una persona entro a la caja ' + str(cajas.index(caja)+1) + '\033[0m')
-            fila.pop(0)
+            fila.pop(0) #saco a la primera persona de la fila porque ahora esta en la caja
         
-        if (len(caja)==1):
-            for persona in caja:
-                if(persona["tiempo_esperando_en_caja"] == persona["tiempo_que_tarda_la_caja"]):
+        if (len(caja)==1): #chequeo si tiene a una persona la caja
+            for persona in caja: 
+                if(persona["tiempo_esperando_en_caja"] == persona["tiempo_que_tarda_la_caja"]): # chequeo si la persona termino
                     cantidad_personas_atendidas+=1
+                    cant_atendidos[cajas.index(caja)] += '1'
                     print('\033[32m' + 'A las '+ str(tiempo) + ' una persona salio atendido de la caja ' + str(cajas.index(caja)+1) + '\033[0m')
-                    caja.pop(0)
+                    caja.pop(0) #la persona atendida sale de la caja
                 else:
-                    persona["tiempo_esperando_en_caja"]+=1
+                    persona["tiempo_esperando_en_caja"]+=1 #si no termino se aumenta el tiempo que estuvo
 
-
-largo_de_fila = len(fila)
+#chequeo cuantas personas quedaron en la fila al terminar la jornada
+largo_de_fila = len(fila) 
 
 if(largo_de_fila>0):
     #si queda alguien en la fila al cierre del supermercado se fuerza el abandono
     cantidad_personas_abandonaron += largo_de_fila
+    fila.clear()
 
 print("\nCantidad cajas: " + str(cantidad_de_cajas))
 print("Abandonaron: " + str(cantidad_personas_abandonaron))
 print("Atendidos: " + str(cantidad_personas_atendidas))
+i=0
+for caja in cant_atendidos:
+    print(f"    Atendidos en caja {i+1}: " + str(len(cant_atendidos[i])))
+    i+=1
 print("Promedio de tiempo de atención: " + str(promedio_tiempo_cajas))
