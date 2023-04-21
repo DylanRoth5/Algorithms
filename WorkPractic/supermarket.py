@@ -33,6 +33,7 @@
 """
 import math
 import random
+import time
 
 minuto = 0 #variable contador para llevar la cuenta de los minutos transcurridos del día laboral
 fin_de_la_jornada = 8 * 60 #variable que marca el fin de las 8 horas de trabajo
@@ -40,9 +41,13 @@ cantidad_personas_abandonaron = 0
 cantidad_personas_atendidas = 0
 promedio_tiempo_cajas = 0
 
+fila = []
+minutos = 0
+hora = 8
+
 cajas = [
     [], #cola de la caja 1
-    #[], #cola de la caja 2
+    [], #cola de la caja 2
 ]
 
 cantidad_de_cajas = len(cajas) #para determinar con cuantas cajas se trabaja una jornada
@@ -64,29 +69,69 @@ def generador_persona():
             "tiempo_que_tarda_la_caja" : random.randint(3, 10)#tiempo que le va a tardar la caja en antender a este cliente: de 3 a 10 minutos
         }
     return p
-
-
+    
 #************************************************************************
 #MOTOR PRINCIPAL
 #Bucle que representa lo que sucede en cada minuto de la jornada laboral
 #Cada iteración representa lo que sucede en un minuto de la jornada
+
+print('\nEl Supermercado trabaja de corrido desde las 8am hasta las 4pm (8horas)\n')
+
 while(minuto <= fin_de_la_jornada): 
     minuto = minuto + 1
-    
+    time.sleep(0.005)
+    minutos = minutos+1
+    if(minutos==60):
+        hora = hora+1
+        minutos = 0
+    tiempo= f'{hora}:{minutos}'
     #LOGICA DE LA ENTRADA A COLA
     #¿en este minuto ingresa un persona a la caja?:
     p = generador_persona()
     if(p):
-        print("Entra una persona a la cola: " + str(p))
+        print("A las "+str(tiempo)+" entro una persona a fila: esperara = " + str(p["grado_de_paciencia"]) + " min | retrasara = " + str(p["tiempo_que_tarda_la_caja"])+" min")
+        fila.append(p)
         
     #LOGICA DE LA PACIENCIA
     #incrementar a todos los contadores de la personas en cola 1 minuto, evaluar si supera el límite de paciencia, sacar de la cola de ser necesario
-    
+    for persona in fila:
+        persona["tiempo_esperando_en_cola"] +=1
+        if(persona["tiempo_esperando_en_cola"] > persona["grado_de_paciencia"]):
+            print('\033[31m' + 'A las '+ str(tiempo) + ' una persona se canso de esperar y se fue...' + '\033[0m')
+            cantidad_personas_abandonaron+=1
+            fila.pop(fila.index(persona))
+
+
     #LOGICA DE LA SALIDA DE CAJA
     #incrementar el contador de la persona que está en caja en 1 minuto. evaluar si ya llega al fin de tiempo determinado para atendderlo
+    for caja in cajas:
+        if ((len(caja)==0) and (len(fila)>0)):
+            index = 0
+            for persona in fila:
+                if(index == 0):
+                    entrante = persona
+                    index+=1        
+            caja.append(entrante)
+            print('\033[34m' + 'A las '+ str(tiempo) + ' una persona entro a la caja ' + str(cajas.index(caja)+1) + '\033[0m')
+            fila.pop(0)
+        
+        if (len(caja)==1):
+            for persona in caja:
+                if(persona["tiempo_esperando_en_caja"] == persona["tiempo_que_tarda_la_caja"]):
+                    cantidad_personas_atendidas+=1
+                    print('\033[32m' + 'A las '+ str(tiempo) + ' una persona salio atendido de la caja ' + str(cajas.index(caja)+1) + '\033[0m')
+                    caja.pop(0)
+                else:
+                    persona["tiempo_esperando_en_caja"]+=1
 
 
-print("Cantidad cajas: " + str(cantidad_de_cajas))
+largo_de_fila = len(fila)
+
+if(largo_de_fila>0):
+    #si queda alguien en la fila al cierre del supermercado se fuerza el abandono
+    cantidad_personas_abandonaron += largo_de_fila
+
+print("\nCantidad cajas: " + str(cantidad_de_cajas))
 print("Abandonaron: " + str(cantidad_personas_abandonaron))
 print("Atendidos: " + str(cantidad_personas_atendidas))
 print("Promedio de tiempo de atención: " + str(promedio_tiempo_cajas))
