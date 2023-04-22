@@ -45,10 +45,11 @@ def generador_persona():
     probabilidad_de_entrada = random.randint(1, 10)#probabilidad 1 en 10 de entrar a una sola cola
     if(probabilidad_de_entrada == 1):
         p = {
-            "grado_de_paciencia" : random.randint(5, 15),#cantidad de minutos que tolera en la cola
-            "tiempo_esperando_en_cola" : 0,#contador de iteraciones, si llega a grado_de_paciencia se va.
-            "tiempo_esperando_en_caja" : 0,#contador de iteraciones cuando ya está en caja, cuando llegue a tiempo_que_tarda_la_caja, se va
-            "tiempo_que_tarda_la_caja" : random.randint(3, 10)#tiempo que le va a tardar la caja en antender a este cliente: de 3 a 10 minutos
+            "grado_de_paciencia" : random.randint(5, 15), #cantidad de minutos que tolera en la cola
+            "tiempo_esperando_en_cola" : 0, #contador de iteraciones, si llega a grado_de_paciencia se va.
+            "tiempo_esperando_en_caja" : 0, #contador de iteraciones cuando ya está en caja, cuando llegue a tiempo_que_tarda_la_caja, se va
+            "tiempo_que_tarda_la_caja" : random.randint(3, 10), #tiempo que le va a tardar la caja en antender a este cliente: de 3 a 10 minutos
+            "tiempo_en_tienda" : 0 #contador del tiempo que paso en la tienda
         }
     return p
     
@@ -77,6 +78,8 @@ def open_market():
         []
     ]
 
+    promedio_tiempo_de_atencion = []
+
     cantidad_de_cajas = len(cajas) #para determinar con cuantas cajas se trabaja una jornada
 
 
@@ -101,6 +104,7 @@ def open_market():
         #incrementar a todos los contadores de la personas en cola 1 minuto, evaluar si supera el límite de paciencia, sacar de la cola de ser necesario
         for persona in fila:
             persona["tiempo_esperando_en_cola"] +=1
+            persona["tiempo_en_tienda"] +=1
             if(persona["tiempo_esperando_en_cola"] > persona["grado_de_paciencia"]):
                 print('\033[31m' + 'A las '+ str(tiempo) + ' una persona se canso de esperar y se fue...' + '\033[0m')
                 cantidad_personas_abandonaron+=1
@@ -127,17 +131,36 @@ def open_market():
                         cantidad_personas_atendidas+=1
                         cant_atendidos[cajas.index(caja)] += '1'
                         print('\033[32m' + 'A las '+ str(tiempo) + ' una persona salio atendido de la caja ' + str(cajas.index(caja)+1) + '\033[0m')
+                        promedio_tiempo_de_atencion += str(persona["tiempo_en_tienda"])
                         caja.pop(0) #la persona atendida sale de la caja
                     else:
-                        persona["tiempo_esperando_en_caja"]+=1 #si no termino se aumenta el tiempo que estuvo
+                        persona["tiempo_esperando_en_caja"]+=1 #si no termino se aumenta el tiempo que estuvo en caja        
+                        persona["tiempo_en_tienda"] +=1 #aumenta el tiempo que paso en la tienda
 
     #chequeo cuantas personas quedaron en la fila al terminar la jornada
     largo_de_fila = len(fila) 
-
     if(largo_de_fila>0):
         #si queda alguien en la fila al cierre del supermercado se fuerza el abandono
         cantidad_personas_abandonaron += largo_de_fila
         fila.clear()
+    
+    sum_tiempo_de_atencion=0
+    len_tiempo_de_atencion=0
+
+    for numero in promedio_tiempo_de_atencion:
+        sum_tiempo_de_atencion += int(numero)
+        len_tiempo_de_atencion +=1
+
+    promedio_tiempo_cajas = round((sum_tiempo_de_atencion)/len_tiempo_de_atencion,2)
+    
+
+    conversion_del_promedio = promedio_tiempo_cajas
+    while conversion_del_promedio>0:
+        conversion_del_promedio-=1
+    
+    minutos_del_promedio = round(promedio_tiempo_cajas-conversion_del_promedio)
+    segundos_del_promedio = round(conversion_del_promedio*60)
+    segundos_del_promedio = segundos_del_promedio*-1
 
     print("\nCantidad cajas: " + str(cantidad_de_cajas))
     print("Abandonaron: " + str(cantidad_personas_abandonaron))
@@ -146,4 +169,4 @@ def open_market():
     for caja in cant_atendidos:
         print(f"    Atendidos en caja {i+1}: " + str(len(cant_atendidos[i])))
         i+=1
-    print("Promedio de tiempo de atención: " + str(promedio_tiempo_cajas))
+    print("Promedio de tiempo de atención: " + str(minutos_del_promedio) + f" minutos y {segundos_del_promedio} segundos")
