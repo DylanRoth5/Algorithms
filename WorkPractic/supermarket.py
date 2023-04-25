@@ -75,7 +75,7 @@ def open_market():
 
     cant_atendidos = [
         [],
-        []
+        [],
     ]
 
     promedio_tiempo_de_atencion = []
