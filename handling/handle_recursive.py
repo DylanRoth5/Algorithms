@@ -1,30 +1,28 @@
-from Activity.numeric_data import *
+from Activity.recursivity import *
 from Tools import terminal_help as help
 import listas as list
 
 # Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
 def handle_input():
     while True:
-        help.print_menu_options(list.numerical_menu)
+        help.print_menu_options(list.recursivity_menu)
         sub_choice = input("\nIngresa el número de la opción que deseas: ")
-        
+            
         match sub_choice:
             case '1':
-                sum_ABC()
+                dictionary()
             case '2':
-                mul_ABC()
+                ages_dictionary()
             case '3':
-                rest_AB()
+                ages_and_index()
             case '4':
-                power_AB()
+                prime()
             case '5':
-                root_C()
+                current_age()
             case '6':
-                pitagoras_AB()
+                matrix()
             case '7':
-                Quadratic_formula()
-            case '8':
-                wardrobe()
+                write_matrix()
             case '0':
                 break
             case _:

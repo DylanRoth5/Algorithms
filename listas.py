@@ -8,6 +8,7 @@ activity_menu = ['Menu de Actividades',
      'Datos Booleanos y Strings',
      'Manipulación de Strings',
      'Funciones, Condicionales, iteración y recursividad',
+     'Control de Flujo, Arrays, Recursividad',
      'Salir']
 
 work_menu = ['Menu de Trabajos Practicos',
@@ -16,6 +17,18 @@ work_menu = ['Menu de Trabajos Practicos',
      'Enigma Machine',
      'Estadisticas Censo 2010',
      'Salir']
+
+recursivity_menu = [
+    'Control de Flujo, Arrays, Recursividad',
+    'Array asociativo con diccionario',
+    'Edades del array',
+    'Indice y edades del array',
+    'Numero es primo o no',
+    'Mostrar tu edad actual',
+    'Crear matriz NxN',
+    'Ingresar valores en matris NxN',
+    'Salir'
+]
 
 numerical_menu = ['Datos Numéricos',
         'La suma de A, B y C',

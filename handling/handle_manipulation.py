@@ -1,5 +1,6 @@
 from Activity.manipulate_string import *
 from Tools import terminal_help as help
+import listas as list
 
 # Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
 def handle_input():

@@ -1,10 +1,11 @@
 from Activity.functions import *
 from Tools import terminal_help as help
+import listas as list
 
 # Define function to handle user input for sub-menu of option 1 "Datos Numéricos"
 def handle_input():
     while True:
-        print_menu_options(list.functions_menu)
+        help.print_menu_options(list.functions_menu)
         sub_choice = input("\nIngresa el número de la opción que deseas: ")
             
         match sub_choice:

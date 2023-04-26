@@ -3,6 +3,7 @@ from handling import handle_numeric
 from handling import handle_bool_string
 from handling import handle_manipulation
 from handling import handle_functions
+from handling import handle_recursive
 from WorkPractic import supermarket as SM
 from Tools import terminal_help as help
 import os
@@ -31,6 +32,10 @@ def handle_activity_menu():
                 clear()
                 # Show sub-menu for option 4 "Funciones, Condicionales, iteración y recursividad"
                 handle_functions.handle_input()
+            case  "5":
+                clear()
+                # Show sub-menu for option 4 "Funciones, Condicionales, iteración y recursividad"
+                handle_recursive.handle_input()
             case  "0":
                 break
             case _:
