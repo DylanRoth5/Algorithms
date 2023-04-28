@@ -11,8 +11,26 @@ activity_menu = ['Menu de Actividades',
      'Control de Flujo, Arrays, Recursividad',
      'Salir']
 
+# Averiguar:
+# ¿En que lugar es el mejor para poner una granja de generadores eólicos?
+# Estación meteorológica más cálida del país (campo 'Temperatura máxima (°C)') y la más fria (campo: 'Temperatura mínima (°C)')
+# Lugar más húmedo y el más seco del país
+# Temperatura promedio durante todo el año en Paraná
+# Agregar estación meteorológica de Libertador San Martin (inventar datos)
+# Sacar las estaciones que le falten algun dato (dato en null)
+
+simulation_menu = ['Simulacion de parcial',
+        '¿En que lugar es el mejor para poner una granja de generadores eólicos?',
+     "Estación meteorológica más cálida del país (campo 'Temperatura máxima (°C)') y la más fria (campo: 'Temperatura mínima (°C)')",
+     'Lugar más húmedo y el más seco del país',
+     'Temperatura promedio durante todo el año en Paraná',
+     'Agregar estación meteorológica de Libertador San Martin (inventar datos)',
+     'Sacar las estaciones que le falten algun dato (dato en null)',
+     'Salir']
+
 work_menu = ['Menu de Trabajos Practicos',
         'Cola de Supermercado',
+        'Simulacion de Parcial',
      'Cifrado Cesar',
      'Enigma Machine',
      'Estadisticas Censo 2010',

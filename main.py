@@ -1,4 +1,5 @@
 import listas as list
+import handle_simulation
 from handling import handle_numeric
 from handling import handle_bool_string
 from handling import handle_manipulation
@@ -54,7 +55,7 @@ def handle_work_menu():
                 select = input('\nPress any letter to go back to menu: ')
             case  "2":
                 clear()
-                print('a')
+                handle_simulation.handle_input()
                 select = input('\nPress any letter to go back to menu: ')
             case  "3":
                 clear()
@@ -68,7 +69,6 @@ def handle_work_menu():
                 break
             case _:
                 print("Opción inválida. Por favor, intenta nuevamente.")
-
 
 # Print menu initially
 help.print_menu_options(list.main_menu)
