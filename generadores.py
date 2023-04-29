@@ -93,8 +93,32 @@ def average_in_parana():
 
 average_in_parana()
 
-def create_in_libertador():
+def create_libertador():
     print()
+    libertador = {
+    'Estación' : 'Libertador San Martin', 
+	'Temperatura (°C)' : {
+            'Ene' : 12.8, 'Feb' : 12.5, 'Mar' : 12.4, 'Abr' : 10.9, 'May' : 6.9, 'Jun' : 4.4, 'Jul' : 4.1, 'Ago' : 6.7, 'Sep' : 9.3, 'Oct' : 11.7, 'Nov' : 12.8, 'Dic' : 13.2},
+	'Temperatura máxima (°C)' : {
+            'Ene' : 20.1, 'Feb' : 19.9, 'Mar' : 19.9, 'Abr' : 19.7, 'May' : 17.3, 'Jun' : 15.6, 'Jul' : 15.4, 'Ago' : 17.4, 'Sep' : 19.2, 'Oct' : 21.1, 'Nov' : 21.7, 'Dic' : 21.3},
+	'Temperatura mínima (°C)' : {
+            'Ene' : 7.4, 'Feb' : 7.0, 'Mar' : 6.3, 'Abr' : 2.8, 'May' : -3.0, 'Jun' : -6.2, 'Jul' : -6.8, 'Ago' : -4.2, 'Sep' : -1.1, 'Oct' : 2.8, 'Nov' : 5.2, 'Dic' : 6.9},
+	'Humedad relativa (%)' : {
+            'Ene' : 65.3, 'Feb' : 64.1, 'Mar' : 62.4, 'Abr' : 48.2, 'May' : 34.6, 'Jun' : 31.1, 'Jul' : 30.1, 'Ago' : 31.7, 'Sep' : 34.4, 'Oct' : 45.3, 'Nov' : 52.3, 'Dic' : 59.2},
+	'Velocidad del Viento (km/h)' : {
+            'Ene' : 6.9, 'Feb' : 7.1, 'Mar' : 6.5, 'Abr' : 6.4, 'May' : 6.0, 'Jun' : 4.9, 'Jul' : 6.6, 'Ago' : 6.6, 'Sep' : 8.6, 'Oct' : 8.7, 'Nov' : 8.8, 'Dic' : 8.3},
+	'Nubosidad total (octavos)' : {
+            'Ene' : 5.2, 'Feb' : 4.8, 'Mar' : 4.1, 'Abr' : 2.7, 'May' : 1.8, 'Jun' : 1.6, 'Jul' : 1.4, 'Ago' : 1.6, 'Sep' : 2.0, 'Oct' : 3.0, 'Nov' : 3.6, 'Dic' : 4.5},
+	'Precipitación (mm)' : {
+            'Ene' : 97.5, 'Feb' : 68.4, 'Mar' : 55.9, 'Abr' : 8.2, 'May' : 1.0, 'Jun' : 0.5, 'Jul' : 0.0, 'Ago' : 1.4, 'Sep' : 3.5, 'Oct' : 16.0, 'Nov' : 27.3, 'Dic' : 71.9},
+	'Frecuencia de días con Precipitación superior a 0.1 mm' : {
+            'Ene' : 15.9, 'Feb' : 12.2, 'Mar' : 9.8, 'Abr' : 2.4, 'May' : 0.3, 'Jun' : 0.1, 'Jul' : 0.0, 'Ago' : 0.4, 'Sep' : 0.9, 'Oct' : 3.5, 'Nov' : 7.4, 'Dic' : 12.7},
+    }
+
+    estadisticas.append(libertador)
+    print(estadisticas[station_index('Libertador San Martin')])
+
+create_libertador()
 
 def no_null_data():
     print('a')

@@ -22,7 +22,7 @@ def handle_input():
                 average_in_parana()
                 select = input('\nPress any letter to go back to menu: ')
             case '5':
-                create_in_libertador()
+                create_libertador()
                 select = input('\nPress any letter to go back to menu: ')
             case '0':
                 break
