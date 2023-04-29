@@ -19,8 +19,6 @@ def handle_input():
                 average_in_parana()
             case '5':
                 create_in_libertador()
-            case '6':
-                delete_null()
             case '0':
                 break
             case _:
