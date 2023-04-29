@@ -10,7 +10,7 @@ def handle_input():
             
         match sub_choice:
             case '1':
-                get_most_wind()
+                get_most_windy_station()
             case '2':
                 hottest_and_coldest()
             case '3':

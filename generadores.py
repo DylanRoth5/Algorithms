@@ -10,87 +10,69 @@ from smn import *
 
 
 
-def get_most_wind(veriable):
+def get_values(condition):
     total_values = {}
-    for estacion in estadisticas:
-        index= 0
-        for key in estacion:
+    for estacion in estadisticas: # Access station
+        for key in estacion: # Access type of value
             sum_values = 0
-            for month in estacion[veriable]:
-                value = (estacion[veriable][month])
-                # if(index == 0):
-                    # print(f'{value}|',end='')
-                if value == None:
-                    sum_values += 0
-                else:
-                    sum_values += value
-            index+=1
+            for month in estacion[condition]: # Access individual values then Sum every value from that type on the station
+                value = (estacion[condition][month])
+                if value == None: sum_values += 0
+                else: sum_values += value
             sum_values = round(sum_values,2)
-        # print()
-        total_values[estacion['Estación']]=sum_values
-        # print(estacion['Estación'])
-        # print(sum_values)
-    print(len(total_values.items()))
+        total_values[estacion['Estación']]=sum_values # make a separate dictionary to hold the sum of values based on station 
+    sorted_values = sorted(total_values.values(),reverse=True) # make an array that holds the sorted values of the sums
+    
+    amount_null = 0 # Search null data in sorted values
+    for item in sorted_values:
+        if item == 0: amount_null+=1
 
-get_most_wind('Velocidad del Viento (km/h)')
+    for i in range(amount_null): # remove from the sorted value null data
+        sorted_values.remove(0)
+
+    # print(total_values)
+    return total_values,sorted_values
+
+def get_max_value(type_medition):
+    total_values,sorted_values = get_values(type_medition)
+    for item in total_values: # get Max value of station
+        if total_values[item] == sorted_values[0]:
+            print(item)
+    print(sorted_values[0]) # print max value
+
+
+def get_min_value(type_medition):
+    total_values,sorted_values = get_values(type_medition)
+    for item in total_values: # get min value of station
+        if total_values[item] == sorted_values[-1]:
+            print(item)
+    print(sorted_values[-1]) # print min value
+
+def station_index(estation):
+    for dict in estadisticas:
+        if dict['Estación'] == estation:
+            return estadisticas.index(dict)
+
+def get_most_windy_station():
+    get_max_value('Velocidad del Viento (km/h)')
 
 def hottest_and_coldest():
-    print()
+    get_max_value('Temperatura máxima (°C)')
+    get_min_value('Temperatura mínima (°C)')
 
 def humid_and_dry():
-    print()
+    get_max_value('Humedad relativa (%)')
+    get_min_value('Humedad relativa (%)')
 
 def average_in_parana():
-    print()
+    # 'PARANÁ AERO'
+    print(station_index('PARANÁ AERO'))
+    print(estadisticas[station_index('PARANÁ AERO')])
+
+average_in_parana()
 
 def create_in_libertador():
     print()
 
 def delete_null():
     print()
-
-
-
-
-
-# i=1
-# prom_velocidades = []
-# lugares = []
-# for place in estadisticas:
-#     # print(f'{i} - ', end='')
-#     i+=1
-#     # print(place['Estación'])
-#     suma_velocidades=0
-#     for mes in place['Velocidad del Viento (km/h)']:
-#         # print(f' {mes}:',end='')
-#         velocidad = str(place['Velocidad del Viento (km/h)'][mes])
-#         # print(velocidad,end='')
-#         if (velocidad == "None"):
-#             suma_velocidades = float(0.0)
-#         else:
-#             suma_velocidades += float(velocidad)
-#     prom_velocidades.append(suma_velocidades/12)
-
-# i=0
-# for place in estadisticas:
-#     # print(place['Estación'],end='')
-#     # print(f':{round(prom_velocidades[i],2)}        ',end='')
-#     if i == 0:
-#         lugares.append({place['Estación'] : round(prom_velocidades[i],2)})
-#         print("\033[92m" + f'{round(prom_velocidades[i],2)}' + "\033[0m")
-#     else:
-#         for prom_vel in lugares:
-#             if prom_velocidades[i] < prom_velocidades[i-1]:
-#                 print("\033[91m" + f'{round(prom_velocidades[i],2)} es menor que {round(prom_velocidades[i-1],2)}' + "\033[0m")
-#                 # lugares.append({place['Estación'] : round(prom_velocidades[i],2)})
-#             elif prom_velocidades[i] > prom_velocidades[i-1]:
-#                 print("\033[92m" + f'{round(prom_velocidades[i],2)} es mayor que {round(prom_velocidades[i-1],2)}' + "\033[0m")
-#                 # lugares.insert({place['Estación'] : round(prom_velocidades[i],2)})
-            
-
-    
-#     i+=1
-
-# print(lugares)
-# # print(lugares[{}].sort())
-
