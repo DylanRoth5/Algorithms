@@ -11,14 +11,19 @@ def handle_input():
         match sub_choice:
             case '1':
                 get_most_windy_station()
+                select = input('\nPress any letter to go back to menu: ')
             case '2':
                 hottest_and_coldest()
+                select = input('\nPress any letter to go back to menu: ')
             case '3':
                 humid_and_dry()
+                select = input('\nPress any letter to go back to menu: ')
             case '4':
                 average_in_parana()
+                select = input('\nPress any letter to go back to menu: ')
             case '5':
                 create_in_libertador()
+                select = input('\nPress any letter to go back to menu: ')
             case '0':
                 break
             case _:

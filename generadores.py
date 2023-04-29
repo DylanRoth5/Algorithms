@@ -96,3 +96,7 @@ average_in_parana()
 def create_in_libertador():
     print()
 
+def no_null_data():
+    print('a')
+
+no_null_data()
