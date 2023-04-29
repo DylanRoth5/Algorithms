@@ -94,7 +94,6 @@ def average_in_parana():
 average_in_parana()
 
 def create_libertador():
-    print()
     libertador = {
     'Estación' : 'Libertador San Martin', 
 	'Temperatura (°C)' : {
@@ -121,6 +120,6 @@ def create_libertador():
 create_libertador()
 
 def no_null_data():
-    print('a')
+    pass
 
 no_null_data()
