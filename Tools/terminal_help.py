@@ -69,3 +69,12 @@ def print_menu_options(options_list):
             print("\033[91m0. " + option + "\033[0m\n")
         else:
             print("\033[92m" + f"{index}. {option}" + "\033[0m")
+
+import datetime
+
+def get_date():
+    year = int(input('Enter a year'))
+    month = int(input('Enter a month'))
+    day = int(input('Enter a day'))
+    date = datetime.date(year, month, day)
+    return date

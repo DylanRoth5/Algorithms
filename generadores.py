@@ -70,7 +70,7 @@ def get_most_windy_station():
     print('Most Windy Station: ',end='')
     get_max_value('Velocidad del Viento (km/h)')
 
-get_most_windy_station()
+# get_most_windy_station()
 
 def hottest_and_coldest():
     print('Hottest Station: ',end='')
@@ -78,7 +78,7 @@ def hottest_and_coldest():
     print('Coldest Station: ',end='')
     get_min_value('Temperatura mínima (°C)')
 
-hottest_and_coldest()
+# hottest_and_coldest()
 
 def humid_and_dry():
     print('Most Humid Station: ',end='')
@@ -86,12 +86,12 @@ def humid_and_dry():
     print('Dryest Station: ',end='')
     get_min_value('Humedad relativa (%)')
 
-humid_and_dry()
+# humid_and_dry()
 
 def average_in_parana():
     prom_of_station('PARANÁ AERO','Temperatura (°C)')
 
-average_in_parana()
+# average_in_parana()
 
 def create_libertador():
     libertador = {
@@ -117,9 +117,9 @@ def create_libertador():
     estadisticas.append(libertador)
     print(estadisticas[station_index('Libertador San Martin')])
 
-create_libertador()
+# create_libertador()
 
 def no_null_data():
     pass
 
-no_null_data()
+# no_null_data()

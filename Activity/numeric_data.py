@@ -45,3 +45,5 @@ def Quadratic_formula():
 def wardrobe():
     A,B = get_AB('altura de la pared: ','profundidad del ropero: ')
     print(f'La Hipotenusa de un triangulo rectangulo con los catetos A y B es: {(A ** 2 - B ** 2) ** 0.5}')
+
+# sum_ABC()
