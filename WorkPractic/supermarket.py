@@ -170,3 +170,4 @@ def open_market():
         print(f"    Atendidos en caja {i+1}: " + str(len(cant_atendidos[i])))
         i+=1
     print("Promedio de tiempo de atención: " + str(minutos_del_promedio) + f" minutos y {segundos_del_promedio} segundos")
+
