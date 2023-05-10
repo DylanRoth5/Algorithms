@@ -6,6 +6,7 @@ from handling import handle_manipulation
 from handling import handle_functions
 from handling import handle_recursive
 from WorkPractic import supermarket as SM
+from WorkPractic import cesar as CC
 from Tools import terminal_help as help
 import os
 clear = lambda: os.system('cls')
@@ -55,7 +56,7 @@ def handle_work_menu():
                 select = input('\nPress any letter to go back to menu: ')
             case  "2":
                 clear()
-                handle_simulation.handle_input()
+                CC.cifrado_cesar()
                 select = input('\nPress any letter to go back to menu: ')
             case  "3":
                 clear()

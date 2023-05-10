@@ -1,4 +1,4 @@
-from generadores import *
+from parciales.generadores import *
 from Tools import terminal_help as help
 import listas as list
 

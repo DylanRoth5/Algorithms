@@ -1,4 +1,4 @@
-from smn import *
+from parciales.smn import *
 
 # Averiguar:
 # ¿En que lugar es el mejor para poner una granja de generadores eólicos?
