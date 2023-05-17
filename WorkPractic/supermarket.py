@@ -171,4 +171,3 @@ def open_market():
         i+=1
     print("Promedio de tiempo de atención: " + str(minutos_del_promedio) + f" minutos y {segundos_del_promedio} segundos")
 
-open_market()
