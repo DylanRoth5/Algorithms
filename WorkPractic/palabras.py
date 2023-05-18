@@ -1,9 +1,5 @@
-newList = []
-word = ''
-i= ''
-while i!='zuzón':
-    wordlist = """
-    a
+diccionario="""
+a
 aba
 abaá
 ababillarse
@@ -96485,6 +96481,7 @@ sovietización
 sovietizar
 sovoz
 soya
+soy
 spa
 spam
 spanglish
@@ -107717,12 +107714,7 @@ zutujil
 zuzar
 zuzo
 zuzón"""
-    for letter in wordlist:
-        if letter != ' ':
-            word = word+letter
-    print(word)
-    newList.append(word)
-    word = ''
-    i=word
 
-print(newList)
+array = diccionario.split()
+# print(array[0])
+# print(array[len(array)-1])
