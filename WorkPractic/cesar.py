@@ -30,6 +30,8 @@ ranint = random.randrange(25)
 
 abcedary = string.ascii_lowercase
 
+frecuencia = 'E', 'A', 'O', 'S', 'R', 'N', 'I', 'D', 'L', 'C', 'T', 'U', 'M', 'P', 'B', 'G', 'V', 'Y', 'Q', 'H', 'F', 'Z', 'J', 'Ñ', 'X', 'K', 'W'
+
 def cipher_cesar(phrase: str,alt = 0):
     phrase = phrase.lower()
     ciphered_phrase = ''
