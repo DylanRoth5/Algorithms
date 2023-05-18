@@ -12,97 +12,79 @@
 # 6) Se sugiere usar una frase de algún famoso inspiradora
 # 7)“Soy optimista, no veo que sea útil ser otra cosa” WChurchill
 
-def cifrado_cesar():
-    # word = input('Input para cifrar')
-    phrase = 'soy optimista'
+import random
+import string
+# Tienes que descargar a libreria nltk para una lista de todas las palabras en ingles. para esto en consola >> pip install nltk
+# import nltk
+# nltk.download() # de las listas elegi todas las que se llamen 'words' para descargar. esto solo lo tienes que hacer una ves.
+from nltk.corpus import words
+word_list = words.words()
 
-def cifrado_cesar(frase, desplazamiento):
-    resultado = ""
+
+phrase = input('write the phrase you want to cipher: ')
+
+ranint = random.randrange(25)
+
+abcedary = string.ascii_lowercase
+
+def cipher_cesar(phrase: str,alt = 0):
+    phrase = phrase.lower()
+    ciphered_phrase = ''
+
+    if alt == 0:
+        alt = ranint
+    print(ranint)
+
+    for letter in phrase:
+        for letterABC in abcedary:
+            if letter == letterABC:
+                letter_index = abcedary.index(letterABC)+alt
+                if letter_index > 25:
+                    letter_index -=25      
+                ciphered_phrase+=abcedary[letter_index]
+        if letter == ' ':
+            ciphered_phrase+=' '
     
-    # Iterar a través de cada carácter en la frase
-    for caracter in frase:
-        # Verificar si el carácter es una letra
-        if caracter.isalpha():
-            # Obtener el código ASCII del carácter y restar el código base
-            codigo_base = ord('a') if caracter.islower() else ord('A')
-            codigo = ord(caracter) - codigo_base
-            
-            # Aplicar el desplazamiento y asegurarse de que esté dentro del rango de letras
-            nuevo_codigo = (codigo + desplazamiento) % 26
-            
-            # Obtener el nuevo carácter y añadirlo al resultado
-            nuevo_caracter = chr(nuevo_codigo + codigo_base)
-            resultado += nuevo_caracter
-        else:
-            # Si el carácter no es una letra, añadirlo al resultado sin cambios
-            resultado += caracter
     
-    return resultado
+    return ciphered_phrase
 
-def descifrado_cesar(frase_cifrada, desplazamiento):
-    resultado = ""
+def decipher(code):
+    decoded_phrase = ''
+    
+    alt = 0
+    while alt<26:
+        for letter in code:
+            for letterABC in abcedary:
+                if letter == letterABC:
+                    letter_index = abcedary.index(letterABC)-alt
+                    if letter_index < 0:
+                        letter_index +=25      
+                    decoded_phrase+=abcedary[letter_index]
+            if letter == ' ':
+                break
+        for word in word_list:
+            if word == decoded_phrase:
+                offset = alt
+        decoded_phrase = ''
+        alt +=1
+    
+    print(offset)
 
-    # Iterar a través de cada carácter en la frase cifrada
-    for caracter in frase_cifrada:
-        # Verificar si el carácter es una letra
-        if caracter.isalpha():
-            # Obtener el código ASCII del carácter y restar el código base
-            codigo_base = ord('a') if caracter.islower() else ord('A')
-            codigo = ord(caracter) - codigo_base
-
-            # Aplicar el desplazamiento inverso y asegurarse de que esté dentro del rango de letras
-            nuevo_codigo = (codigo - desplazamiento) % 26
-
-            # Obtener el nuevo carácter y añadirlo al resultado
-            nuevo_caracter = chr(nuevo_codigo + codigo_base)
-            resultado += nuevo_caracter
-        else:
-            # Si el carácter no es una letra, añadirlo al resultado sin cambios
-            resultado += caracter
-
-    return resultado
-
-def descifrado_cesar_auto(frase_cifrada):
-    palabras_comunes = ['hola', 'mundo', 'hoy', 'bien', 'gracias', 'soy']  # Lista de palabras comunes en el idioma correspondiente
-
-    for desplazamiento in range(26):
-        resultado = ""
-
-        for caracter in frase_cifrada:
-            if caracter.isalpha():
-                codigo_base = ord('a') if caracter.islower() else ord('A')
-                codigo = ord(caracter) - codigo_base
-
-                nuevo_codigo = (codigo - desplazamiento) % 26
-                nuevo_caracter = chr(nuevo_codigo + codigo_base)
-                resultado += nuevo_caracter
-            else:
-                resultado += caracter
-
-        # Verificar si la frase descifrada contiene algunas palabras comunes
-        palabras_encontradas = [palabra for palabra in palabras_comunes if palabra in resultado.lower()]
-
-        if len(palabras_encontradas) > 0:
-            return desplazamiento, resultado
-
-    return None, None
+    for letter in code:
+        for letterABC in abcedary:
+            if letter == letterABC:
+                letter_index = abcedary.index(letterABC)-offset
+                if letter_index > 25:
+                    letter_index -=25      
+                decoded_phrase+=abcedary[letter_index]
+        if letter == ' ':
+            decoded_phrase+=' '
+    
+    return decoded_phrase
 
 
-
-frase_original = 'soy optimista'
-desplazamiento = 7
-
-
-frase_cifrada = cifrado_cesar(frase_original, desplazamiento)
-print("Frase cifrada:", frase_cifrada)
-frase_descifrada = descifrado_cesar(frase_cifrada, desplazamiento)
-print("Frase descifrada:", frase_descifrada)
-
-
-desplazamiento, frase_descifrada = descifrado_cesar_auto(frase_cifrada)
-
-if desplazamiento is not None:
-    print("Número de desplazamiento encontrado:", desplazamiento)
-    print("Frase descifrada:", frase_descifrada)
-else:
-    print("No se encontró el número de desplazamiento.")
+print(phrase)
+code = cipher_cesar(phrase)
+print(code)
+decode = decipher(code)
+print(decode)
