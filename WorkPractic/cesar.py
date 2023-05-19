@@ -22,33 +22,46 @@
 import random
 import string
 from palabras import array
+
 word_list = array
-
-phrase = input('write the phrase you want to cipher: ')
-
-ranint = random.randrange(25)
-
+ranint = random.randrange(26)
 abcedary = string.ascii_lowercase
 
-frecuencia = 'E', 'A', 'O', 'S', 'R', 'N', 'I', 'D', 'L', 'C', 'T', 'U', 'M', 'P', 'B', 'G', 'V', 'Y', 'Q', 'H', 'F', 'Z', 'J', 'Ñ', 'X', 'K', 'W'
+lettersABC = 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+exeptions = ' ','.',',','\"','\'','“','”','ú','ñ'
 
 def cipher_cesar(phrase: str,alt = 0):
     phrase = phrase.lower()
     ciphered_phrase = ''
     if alt == 0:
         alt = ranint
-    # print(ranint)
 
     for letter in phrase:
         for letterABC in abcedary:
             if letter == letterABC:
                 letter_index = abcedary.index(letterABC)+alt
-                if letter_index > 25:
-                    letter_index -=25      
+                if letter_index >=  26:
+                    letter_index -= 26
                 ciphered_phrase+=abcedary[letter_index]
-        if letter == ' ':
-            ciphered_phrase+=' '
-    
+        for ex in exeptions:
+            if letter == ex:
+                ciphered_phrase += ex
+        # if letter == ' ':
+        #     ciphered_phrase+=' '
+        # if letter == ',':
+        #     ciphered_phrase+=','
+        # if letter == '\'\'':
+        #     ciphered_phrase+='\'\''
+        # if letter == '\"':
+        #     ciphered_phrase+='\"'
+        # if letter == '“':
+        #     ciphered_phrase+='“'
+        # if letter == '”':
+        #     ciphered_phrase+='”'
+        # if letter == 'ú':
+        #     ciphered_phrase+='ú'
+        # if letter == 'ñ':
+        #     ciphered_phrase+='ñ'
     
     return ciphered_phrase
 
@@ -56,63 +69,116 @@ def decipher(code):
     decoded_word = ''
     decoded_phrase = []
     decoded_phrase_alt = []
-
-    # metodo 1: a veces funciona. cuando funciona las palabras salen bien porque chequea que existan
-    # tiende a omitir palabras que no reconoce el diccionario
-    alt = 0
-    while alt<26:
-        for letter in code:
-            for letterABC in abcedary:
-                if letter == letterABC:
-                    letter_index = abcedary.index(letterABC)-alt
-                    if letter_index < 0:
-                        letter_index +=25     
-                    decoded_word+=abcedary[letter_index]
-            if letter == ' ':
-                for word in word_list:
-                    if word == decoded_word:          
-                        decoded_phrase.append(decoded_word)
-                        offset = alt
-                decoded_word = ''
-        for word in word_list:
-            if word == decoded_word:            
-                decoded_phrase.append(decoded_word)
-                offset = alt
-        decoded_word = ''
-        alt +=1
-    
-    # Metodo 2: la mayoria de las veces funciona, pero 
-    # no chequea que existan simplemente traslada con el offset que se le dio
-    # traslada todo 
-    # depende del metodo 1 para saber el offset
-    for letter in code:
-        for letterABC in abcedary:
-            if letter == letterABC:
-                letter_index = abcedary.index(letterABC)-offset
-                if letter_index < 0:
-                    letter_index +=25      
-                decoded_word+=abcedary[letter_index]
-        if letter == ' ':
-            decoded_phrase_alt.append(decoded_word)
-            decoded_word=' '
-    decoded_phrase_alt.append(decoded_word)
     
     phrase = ''
-    for word in decoded_phrase:
-        phrase += str(word+' ')
+    offset = 0
 
+    while offset< len(lettersABC):
+        for letter in code:
+            for abc in lettersABC:
+                if letter == abc:
+                    letter_index = lettersABC.index(letter)-offset
+                    phrase+=(lettersABC[letter_index])
+                    if letter_index<0:
+                        letter_index+= len(lettersABC)
+            for ex in exeptions:
+                if letter == ex:
+                    phrase += ex
+            
+            # if letter == ' ':
+            #     phrase+=(' ')
+            # if letter == ' ':
+            #     phrase+=' '
+            # if letter == ',':
+            #     phrase+=','
+            # if letter == '\'\'':
+            #     phrase+='\'\''
+            # if letter == '\"':
+            #     phrase+='\"'
+            # if letter == '“':
+            #     phrase+='“'
+            # if letter == '”':
+            #     phrase+='”'
+            # if letter == 'ú':
+            #     phrase+='ú'
+            # if letter == 'ñ':
+            #     phrase+='ñ'
+        decoded_phrase.append(phrase)
+        phrase = ''
+        offset+=1
+
+    frequency = {}
+    for phrase in decoded_phrase:
+        frequency[phrase] = 0
+
+    for word in array:
+        wordSpace = f' {word} '
+        for phrase in decoded_phrase:
+            if wordSpace in phrase:
+                frequency[phrase]+=1
+
+    sorted = []
+    for value in frequency.values():
+        if value >0:
+            sorted.append(int(value))
+    sorted.sort(reverse=True)
+
+    getting_there = True
+    got_there='no'
+    while getting_there == True:
+        for value in sorted:
+            for phrase in frequency:
+                if frequency[phrase]==value:
+                    print(phrase)
+                    got_there = input('Es esta la decodificacion correcta? yes/no ')
+                    if got_there == 'yes':
+                        correct_phrase = phrase
+                        getting_there = False
+                        break  
+            if got_there == 'yes':
+                getting_there = False
+                break 
+    
+    return correct_phrase
+
+# Frases para probar:
+    # “Soy optimista, no veo que sea útil ser otra cosa” WChurchill
+    # “No cuentes los días, haz que los días cuenten.”
+    # “El amor no tiene cura, pero es la cura para todos los males.” ...
+    # “El mejor momento del día es ahora.” ...
+    # “Sé el cambio que quieres ver en el mundo.” ...
+    # “Piensa, sueña, cree y atrévete.” ...
+    # El sentido de la vida es tener valores, no cosas de valor.
+
+print("""
+
+Menu Codigo Cesar (Escribe 2 palabras o mas en español)
+1. codificar un texto
+2. decodificar un texto
+0. salir
+
+""")
+while True:
+    
+    choice = input("Ingresa el número de la opción que deseas: ")
+    
+    match choice:
+        case "1":
+            phrase = input('\nwrite the phrase you want to cipher: ')
+
+            print('==========================\n'+cipher_cesar(phrase)+'\n==========================')
+        case  "2":
+            code = input('\nwrite the phrase you want to decipher: ')
+            print('==========================\n'+decipher(code)+'\n==========================')
+        case  "0":
+            print("\n¡Adiós!")
+            exit()
+        case _:
+            print("Opción inválida. Por favor, intenta nuevamente.")
         
-    alt_phrase = ''
-    for word in decoded_phrase_alt:
-        alt_phrase += str(word+' ')
-        
-    return phrase,alt_phrase
-
-
-# Soy optimista no veo que sea útil ser otra cosa WChurchill
-print('frase original: ',phrase)
-code = cipher_cesar(phrase)
-print('metodo codigo: ',code)
-decode,decode_alt = decipher(code)
-print('metodo 1: ',decode)
-print('metodo 2: ',decode_alt)
+    print("""
+    Menu Codigo Cesar (Escribe 2 palabras o mas en español)
+    1. codificar un texto
+    2. decodificar un texto
+    0. salir
+    """)
