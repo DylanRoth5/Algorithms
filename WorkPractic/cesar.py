@@ -46,30 +46,10 @@ def cipher_cesar(phrase: str,alt = 0):
         for ex in exeptions:
             if letter == ex:
                 ciphered_phrase += ex
-        # if letter == ' ':
-        #     ciphered_phrase+=' '
-        # if letter == ',':
-        #     ciphered_phrase+=','
-        # if letter == '\'\'':
-        #     ciphered_phrase+='\'\''
-        # if letter == '\"':
-        #     ciphered_phrase+='\"'
-        # if letter == '“':
-        #     ciphered_phrase+='“'
-        # if letter == '”':
-        #     ciphered_phrase+='”'
-        # if letter == 'ú':
-        #     ciphered_phrase+='ú'
-        # if letter == 'ñ':
-        #     ciphered_phrase+='ñ'
-    
     return ciphered_phrase
 
 def decipher(code):
-    decoded_word = ''
     decoded_phrase = []
-    decoded_phrase_alt = []
-    
     phrase = ''
     offset = 0
 
@@ -84,25 +64,6 @@ def decipher(code):
             for ex in exeptions:
                 if letter == ex:
                     phrase += ex
-            
-            # if letter == ' ':
-            #     phrase+=(' ')
-            # if letter == ' ':
-            #     phrase+=' '
-            # if letter == ',':
-            #     phrase+=','
-            # if letter == '\'\'':
-            #     phrase+='\'\''
-            # if letter == '\"':
-            #     phrase+='\"'
-            # if letter == '“':
-            #     phrase+='“'
-            # if letter == '”':
-            #     phrase+='”'
-            # if letter == 'ú':
-            #     phrase+='ú'
-            # if letter == 'ñ':
-            #     phrase+='ñ'
         decoded_phrase.append(phrase)
         phrase = ''
         offset+=1
