@@ -12,12 +12,6 @@
 # 6) Se sugiere usar una frase de algún famoso inspiradora
 # 7)“Soy optimista, no veo que sea útil ser otra cosa” WChurchill
 
-# Esto no es mas necesario
-# Tienes que descargar a libreria nltk para una lista de todas las palabras en ingles. para esto en consola >> pip install nltk
-# import nltk
-# nltk.download() # de las listas elegi todas las que se llamen 'words' para descargar. esto solo lo tienes que hacer una ves.
-# from nltk.corpus import words
-# word_list = words.words()
 
 import random
 import string
@@ -120,7 +114,6 @@ Menu Codigo Cesar (Escribe 2 palabras o mas en español)
 
 """)
 while True:
-    
     choice = input("Ingresa el número de la opción que deseas: ")
     
     match choice:
