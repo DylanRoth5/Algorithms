@@ -12,13 +12,10 @@
 # 6) Se sugiere usar una frase de algún famoso inspiradora
 # 7)“Soy optimista, no veo que sea útil ser otra cosa” WChurchill
 
-
-import random
 import string
 from palabras import array
 
 word_list = array
-ranint = random.randrange(26)
 abcedary = string.ascii_lowercase
 
 lettersABC = 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
@@ -28,7 +25,7 @@ def cipher_cesar(phrase: str,alt = 0):
     phrase = phrase.lower()
     ciphered_phrase = ''
     if alt == 0:
-        alt = ranint
+        alt = int(input('entre la clave de cifrado (entre 1 y 26): '))
 
     for letter in phrase:
         for letterABC in abcedary:
