@@ -46,4 +46,73 @@ for fila in inverted_matrix:
     inv_sum_items = 0
 
 print(inv_filas_sum)
+print("")
 
+
+a = (matrix[0][0]*matrix[1][1]*matrix[2][2])
+b = (matrix[0][1]*matrix[1][2]*matrix[2][0])
+c = (matrix[0][2]*matrix[1][0]*matrix[2][1])
+
+
+d = (matrix[0][2]*matrix[1][1]*matrix[2][0])
+e = (matrix[0][0]*matrix[1][2]*matrix[2][1])
+f = (matrix[0][1]*matrix[1][0]*matrix[2][2])
+
+
+determinante = (a+b+c)-(d+e+f)
+print(f'({a}+{b}+{c})-({d}+{e}+{f}) = {determinante}')
+
+a = (matrix[0][3]*matrix[1][1]*matrix[2][2])
+b = (matrix[0][1]*matrix[1][2]*matrix[2][3])
+c = (matrix[0][2]*matrix[1][3]*matrix[2][1])
+
+
+d = (matrix[0][2]*matrix[1][1]*matrix[2][3])
+e = (matrix[0][3]*matrix[1][2]*matrix[2][1])
+f = (matrix[0][1]*matrix[1][3]*matrix[2][2])
+
+
+det_x = (a+b+c)-(d+e+f)
+print(f'({a}+{b}+{c})-({d}+{e}+{f}) = {det_x}')
+
+a = (matrix[0][0]*matrix[1][3]*matrix[2][2])
+b = (matrix[0][3]*matrix[1][2]*matrix[2][0])
+c = (matrix[0][2]*matrix[1][0]*matrix[2][3])
+
+
+d = (matrix[0][2]*matrix[1][3]*matrix[2][0])
+e = (matrix[0][0]*matrix[1][2]*matrix[2][3])
+f = (matrix[0][3]*matrix[1][0]*matrix[2][2])
+
+
+det_y = (a+b+c)-(d+e+f)
+print(f'({a}+{b}+{c})-({d}+{e}+{f}) = {det_y}')
+
+a = (matrix[0][0]*matrix[1][1]*matrix[2][3])
+b = (matrix[0][1]*matrix[1][3]*matrix[2][0])
+c = (matrix[0][3]*matrix[1][0]*matrix[2][1])
+
+
+d = (matrix[0][3]*matrix[1][1]*matrix[2][0])
+e = (matrix[0][0]*matrix[1][3]*matrix[2][1])
+f = (matrix[0][1]*matrix[1][0]*matrix[2][3])
+
+
+det_z = (a+b+c)-(d+e+f)
+print(f'({a}+{b}+{c})-({d}+{e}+{f}) = {det_z}')
+
+
+print()
+X = det_x/determinante
+Y = det_y/determinante
+Z = det_z/determinante
+
+print(f'(X,Y,Z)=({X},{Y},{Z})')
+from fractions import Fraction
+
+X = Fraction(X).limit_denominator()
+Y = Fraction(Y).limit_denominator()
+Z = Fraction(Z).limit_denominator()
+
+print(f'(X,Y,Z)=({X},{Y},{Z})')
+print()
