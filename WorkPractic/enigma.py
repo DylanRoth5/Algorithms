@@ -21,3 +21,35 @@
 #       entonces se procesa el circuito.
 #   Usar Objetos y Clases
 
+class Position:
+
+    abecedario = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        
+
+    def __init__(self,letter='A') -> None:
+        self.initial_position = letter
+        self.reset()
+    
+    def reset(self):
+        self.x = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        for position, letter in enumerate(self.abecedario):
+            if self.initial_position==letter:
+                for i in range(position):
+                    self.rotate()
+                break
+        
+    def rotate(self):
+        self.x.append(self.x[0])
+        del self.x[0]
+    
+    def real_in(self, letter):
+        for position, l in enumerate(self.abecedario):
+            if letter == l:
+                return self.x[position]
+    
+    def real_out(self,letter):
+        for position, l in enumerate(self.x):
+            if letter == l:
+                return self.abecedario[position]
+
+

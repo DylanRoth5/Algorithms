@@ -1,6 +1,9 @@
 class Enigma:
 
-    config = 'AAA'
+    config = ''
+    code = ''
 
-    def __init__(self,config):
+    def __init__(self,config='AAA',code=''):
         self.config = config
+        self.code = code
+    
