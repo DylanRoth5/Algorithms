@@ -181,18 +181,31 @@ ins = ins.upper()
 
 # print(rotate(rotorI))
 rotation = 0
-
+phase_one = ''
 for item in ins:
     for letter in abecedario:
         if letter == item:
-            print(letter,abecedario.index(letter))
+            # print(letter,abecedario.index(letter))
             rotorI = rotate(rotorI)
             rotation += 1
-            print(rotorI[abecedario.index(letter)])
-            print(rotorIV[abecedario.index(letter)])
+            # print(rotorI[abecedario.index(letter)])
+            phase_one+= rotorI[abecedario.index(letter)]
+            
+
+phase_two = ''
+for item in phase_one:
+    for letter in abecedario:
+        if letter == item:
+            print(phase_one.index(letter)+1)
+            print(letter,abecedario.index(letter)-(phase_one.index(letter)+1))
+
+            print(rotorIV[abecedario.index(letter)-(phase_one.index(letter)+1)])
+            phase_two+= rotorIV[abecedario.index(letter)-(phase_one.index(letter)+1)]
 
 
 
 
 
-
+print(ins)
+print(phase_one)
+print(phase_two)
