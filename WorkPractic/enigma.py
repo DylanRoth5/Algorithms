@@ -196,7 +196,7 @@ phase_two = ''
 for item in phase_one:
     for letter in abecedario:
         if letter == item:
-            # print(phase_one.index(letter)+1)
+            # print(phase_one.index(letter)+1) 
             # print(letter,abecedario.index(letter)-(phase_one.index(letter)+1))
 
             # print(rotorIV[abecedario.index(letter)-(phase_one.index(letter)+1)])
