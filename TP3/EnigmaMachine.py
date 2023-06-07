@@ -22,7 +22,7 @@ Configuracion:
     Reflector: B
     Rotors: I, IV, V
     Key: AAA
-    Ring setting: 
+    Ring setting: AAA (No lo he hecho aun)
     Message: A => I
 """
 
