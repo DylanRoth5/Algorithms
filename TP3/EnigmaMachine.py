@@ -42,11 +42,9 @@ KB = Keyboard()
 enigma = Enigma(B,I,IV,V,KB)
 
 #set key
-enigma.set_key('DOG')
-
-# enigma.r3.show()
-# enigma.r2.show()
-# enigma.r1.show()
+key = input("Escribe una llave de tres letras: ")
+key = key.upper()
+enigma.set_key(key)
 
 # cifrar un mensaje
 message = input('Escribe el mensaje para cifrar o descifrar: ')
