@@ -12,7 +12,7 @@ Bibliografia:
     Joshua Zeitsoff: 
     https://www.youtube.com/playlist?list=PLe6eaTVou9VQoL5vGFJCH3r6bJbh04hao
 
-    Pagina de CS61b Proyecto 1: 
+    Pagina de CS61b Proyecto 1:  
     https://inst.eecs.berkeley.edu/~cs61b/fa18/materials/proj/proj1/index.html
 
     Coding casowary:
@@ -49,7 +49,7 @@ enigma.set_key('DOG')
 # enigma.r1.show()
 
 # cifrar un mensaje
-message = "test"
+message = input('Escribe el mensaje para cifrar o descifrar: ')
 message = message.upper()
 code=''
 for letter in message:
