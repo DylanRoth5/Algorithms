@@ -15,7 +15,8 @@ class Enigma:
         self.r3.rotate_to(key[2])
 
     def encipher(self,letter):
-        # rotate
+        # rotate https://www.youtube.com/watch?v=W6NfcxP8ffY&ab_channel=JoshuaZeitsoff
+        # double stepping https://www.youtube.com/watch?v=5StZlF-clPc&t=24s&ab_channel=JoshuaZeitsoff
         if self.r2.left[0] == self.r2.notch and self.r3.left[0] == self.r3.notch:
             self.r1.rotate()
             self.r2.rotate()
@@ -30,8 +31,7 @@ class Enigma:
         else:
             self.r3.rotate()
         
-        # self.r3.rotate()
-            
+        
         #pass signal
         signal = self.kb.forward(letter)
         signal = self.r3.forward(signal)
