@@ -1,5 +1,5 @@
 class Pais:
-    provincias = []#list para contener objetos de clase Provincia
+    provincias = [] #list para contener objetos de clase Provincia
     nombre = ""
     def __init__(self, p):
         self.provincias = p
@@ -9,7 +9,7 @@ class Pais:
     def get_total_poblacion(self):
         total = 0
         for p in self.provincias:
-            total = total + p.get_total_poblacion()
+            total += p.get_total_poblacion()
         return total
 
     #Devuelte el objeto Provincia por el cod recibido
@@ -28,7 +28,12 @@ class Pais:
         Mostrar el total de pob. masculina
     """
     def mostrar_totales_poblacion(self):
-        pass
+        index = 0
+        total_poblacion = 0
+        for p in self.provincias:
+            total_poblacion += p.alfabetismo.get_total()
+            index+=1
+        print(total_poblacion)
     
    
     """
@@ -185,6 +190,7 @@ arg = Pais([
 
 print(arg.get_provincia(0).get_total_poblacion())
 print(arg.get_total_poblacion())
+arg.mostrar_totales_poblacion()
 
 print("\n")
 
