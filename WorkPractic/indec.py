@@ -28,14 +28,42 @@ class Pais:
         Mostrar el total de pob. masculina
     """
     def mostrar_totales_poblacion(self):
-        total_hombres = 0
-        total_mujeres = 0
+        print('Total:',self.get_total_poblacion())
+        print('    Hombres:',self.get_total_hombres())
+        print('    Mujeres:',self.get_total_mujeres())
+    
+    def get_total_hombres(self):
+        total_hombres = self.get_total_hombres_alfabetos()+self.get_total_hombres_analfabetos()
+        return total_hombres
+    
+    def get_total_hombres_analfabetos(self):
+        hombres_analfabetos = 0
         for p in self.provincias:
-            total_hombres += p.alfabetismo.alfabetos.varones+p.alfabetismo.analfabetos.varones
-            total_mujeres += p.alfabetismo.alfabetos.mujeres+p.alfabetismo.analfabetos.mujeres
-        print('Total:',total_hombres+total_mujeres)
-        print('    Hombres:',total_hombres)
-        print('    Mujeres:',total_mujeres)
+            hombres_analfabetos += p.alfabetismo.analfabetos.varones
+        return hombres_analfabetos
+    
+    def get_total_hombres_alfabetos(self):
+        hombres_alfabetos = 0
+        for p in self.provincias:
+            hombres_alfabetos += p.alfabetismo.alfabetos.varones
+        return hombres_alfabetos
+    
+    def get_total_mujeres(self):
+        total_mujeres = self.get_total_mujeres_alfabetas()+self.get_total_mujeres_analfabetas()
+        return total_mujeres
+    
+    def get_total_mujeres_analfabetas(self):
+        mujeres_analfabetas = 0
+        for p in self.provincias:
+            mujeres_analfabetas += p.alfabetismo.analfabetos.mujeres
+        return mujeres_analfabetas
+    
+    def get_total_mujeres_alfabetas(self):
+        mujeres_alfabetas = 0
+        for p in self.provincias:
+            mujeres_alfabetas += p.alfabetismo.alfabetos.mujeres
+        return mujeres_alfabetas
+
     """
         Mostrar el nombre de provincia y su ratio de habitantes por vivienda
         Orderna por ratio descendentemente
@@ -43,33 +71,49 @@ class Pais:
     def mostrar_ratio_habitantes_por_vivienda_por_provincia(self):
         HxVxP = {}
         for p in self.provincias:
-            # print(p.nombre)
             total_viviendas = 0
             for v in p.viviendas:
                 total_viviendas += v.cantidad
-            # print('    ',round(p.get_total_poblacion()/total_viviendas,2),'h/v')
             HxVxP[p.nombre] = round(p.get_total_poblacion()/total_viviendas,2)
+        
         for item in HxVxP:
             print(item,HxVxP[item])
     """
         Mostrar por sexo el % de analfabetismo
     """
     def mostrar_porcentaje_analfabetismo_por_sexo(self):
-        pass    
+        porc_h = round((self.get_total_hombres_analfabetos()*100)/self.get_total_hombres(),2)
+        porc_m = round((self.get_total_mujeres_analfabetas()*100)/self.get_total_mujeres(),2)
+        print('Porcentaje de analfabetismo x sexo en',self.nombre)
+        print('     hombres:',porc_h,'%')
+        print('     mujeres:',porc_m,'%')
 
     """
         Mostrar el nombre de provincia y el % de analfabetos.
         Ordenar la lista descendentemente por el %
     """
     def mostrar_porcentaje_analfabetismo_por_provincia(self):
-        pass    
+        for p in self.provincias:
+            print(p.nombre)
+            h_a = p.alfabetismo.analfabetos.varones
+            m_a = p.alfabetismo.analfabetos.mujeres
+            total_h = p.alfabetismo.alfabetos.varones+h_a
+            total_m = p.alfabetismo.alfabetos.mujeres+m_a
+            print('     analfabetos:',round(((h_a+m_a)*100)/(total_h+total_m),2),'%')
 
     """
         Mostrar el nombre de provincia y el % de viviendas sin retrete
         Ordenar la lista descendentemente por el %
     """
     def mostrar_porcentaje_vivendas_sin_retrete_por_provincia(self):
-        pass    
+        for p in self.provincias:
+            print(p.nombre)
+            cant_v = 0
+            for v in p.viviendas:
+                cant_v += v.cantidad
+            print('     sin sanitario:',round((p.sanitario.sin_retrete*100)/cant_v,2),'%')
+                
+        
 
     """
         Mostrar el nombre de provincia y el % de los que no viven en una casa o departamento.
@@ -195,10 +239,24 @@ arg = Pais([
     Provincia(24, 'Tucumán', Alfabetismo(PorSexo(557210, 596990), PorSexo(15859, 13295)), Sanitario(276897, 58924), [Vivienda(0, 287900), Vivienda(1, 4931), Vivienda(2, 11031), Vivienda(3, 30431), Vivienda(4, 897), Vivienda(5, 184), Vivienda(6, 344), Vivienda(7, 103)])
 ])
 
-print(arg.get_provincia(0).get_total_poblacion())
-print(arg.get_total_poblacion())
-arg.mostrar_totales_poblacion()
-arg.mostrar_ratio_habitantes_por_vivienda_por_provincia()
+print("")
+print('poblacion x provincia:',arg.get_provincia(0).get_total_poblacion())
+print("")
+print('poblacion total:',arg.get_total_poblacion())
+print("\nTotales de poblacion:")
+arg.mostrar_totales_poblacion() # listo
+print("")
+arg.mostrar_ratio_habitantes_por_vivienda_por_provincia() # en progreso
+print("")
+arg.mostrar_porcentaje_analfabetismo_por_sexo() # listo
+print("")
+arg.mostrar_porcentaje_analfabetismo_por_provincia() #listo
+print("")
+arg.mostrar_porcentaje_vivendas_sin_retrete_por_provincia() # en progreso
+print("")
+arg.mostrar_porcentaje_vivienda_precaria_por_provincia() # en progreso
+print("")
+arg.mostrar_correlacion_alfabetismo_vs_vivienda_y_retrete() # en progreso
 
 print("\n")
 
