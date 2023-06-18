@@ -1,3 +1,5 @@
+from pylab import *
+import matplotlib.pyplot as plt
 class Pais:
     provincias = [] #list para contener objetos de clase Provincia
     nombre = ""
@@ -144,8 +146,32 @@ class Pais:
         el signo de la pendientes del % de alfabetismo?
         ¿Que se puede concluir?
     """
+
     def mostrar_correlacion_alfabetismo_vs_vivienda_y_retrete(self):
-        pass
+        alfabetismo = []
+        for p in self.provincias:
+            percent = round((p.alfabetismo.analfabetos.get_total()*100)/p.get_total_poblacion(),2)
+            name = p.nombre
+            alfabetismo.append((name,percent))
+        for i in range(len(alfabetismo)-1):
+            for j in range(len(alfabetismo)-i-1):
+                if alfabetismo[j][1] > alfabetismo[j+1][1]:
+                    alfabetismo[j], alfabetismo[j+1] = alfabetismo[j+1], alfabetismo[j]
+        for item in alfabetismo:
+            print(item[0])
+            print('     h/v:',item[1])
+
+
+        # x = [1, 2, 3, 4]
+        # y = [2, 3, 0, 0.5]
+        fig, ax = plt.subplots()
+        for item in alfabetismo:
+            ax.scatter(item[0],item[1],c='red')
+        plt.xlabel("Vivienda y retrete")
+        plt.ylabel("alfabetismo")
+        plt.title("Simple Scatter Plot")
+        plt.show()
+
     
 
 class Provincia:
