@@ -63,21 +63,26 @@ class Pais:
         for p in self.provincias:
             mujeres_alfabetas += p.alfabetismo.alfabetos.mujeres
         return mujeres_alfabetas
-
     """
         Mostrar el nombre de provincia y su ratio de habitantes por vivienda
         Orderna por ratio descendentemente
     """
     def mostrar_ratio_habitantes_por_vivienda_por_provincia(self):
-        HxVxP = {}
+        hab_viv = []
         for p in self.provincias:
             total_viviendas = 0
             for v in p.viviendas:
                 total_viviendas += v.cantidad
-            HxVxP[p.nombre] = round(p.get_total_poblacion()/total_viviendas,2)
-        
-        for item in HxVxP:
-            print(item,HxVxP[item])
+            percent = round(p.get_total_poblacion()/total_viviendas,2)
+            name = p.nombre
+            hab_viv.append((name,percent))
+        for i in range(len(hab_viv)-1):
+            for j in range(len(hab_viv)-i-1):
+                if hab_viv[j][1] < hab_viv[j+1][1]:
+                    hab_viv[j], hab_viv[j+1] = hab_viv[j+1], hab_viv[j]
+        for item in hab_viv:
+            print(item[0])
+            print('     h/v:',item[1])
     """
         Mostrar por sexo el % de analfabetismo
     """
@@ -112,15 +117,21 @@ class Pais:
             for v in p.viviendas:
                 cant_v += v.cantidad
             print('     sin sanitario:',round((p.sanitario.sin_retrete*100)/cant_v,2),'%')
-                
-        
-
     """
         Mostrar el nombre de provincia y el % de los que no viven en una casa o departamento.
         Ordenar la lista descendentemente por el %
     """
     def mostrar_porcentaje_vivienda_precaria_por_provincia(self):
-        pass
+        for p in self.provincias:
+            print(p.nombre)
+            cant_v = 0
+            for v in p.viviendas:
+                if v.tipo != 0 and v.tipo != 3:
+                    cant_v += v.cantidad
+            total_v = 0
+            for v in p.viviendas:
+                total_v += v.cantidad
+            print('     situacion precaria:',round((cant_v*100)/total_v,2),'%')
 
     """
         Se quiere saber si hay una correlacion entre las variables: analfabetismos vs
@@ -246,15 +257,15 @@ print('poblacion total:',arg.get_total_poblacion())
 print("\nTotales de poblacion:")
 arg.mostrar_totales_poblacion() # listo
 print("")
-arg.mostrar_ratio_habitantes_por_vivienda_por_provincia() # en progreso
+arg.mostrar_ratio_habitantes_por_vivienda_por_provincia() # listo
 print("")
 arg.mostrar_porcentaje_analfabetismo_por_sexo() # listo
 print("")
 arg.mostrar_porcentaje_analfabetismo_por_provincia() #listo
 print("")
-arg.mostrar_porcentaje_vivendas_sin_retrete_por_provincia() # en progreso
+arg.mostrar_porcentaje_vivendas_sin_retrete_por_provincia() # listo
 print("")
-arg.mostrar_porcentaje_vivienda_precaria_por_provincia() # en progreso
+arg.mostrar_porcentaje_vivienda_precaria_por_provincia() # listo
 print("")
 arg.mostrar_correlacion_alfabetismo_vs_vivienda_y_retrete() # en progreso
 
