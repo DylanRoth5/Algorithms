@@ -1,4 +1,5 @@
 from pylab import *
+import numpy as np
 import matplotlib.pyplot as plt
 class Pais:
     provincias = [] #list para contener objetos de clase Provincia
@@ -150,29 +151,75 @@ class Pais:
     def mostrar_correlacion_alfabetismo_vs_vivienda_y_retrete(self):
         alfabetismo = []
         for p in self.provincias:
-            percent = round((p.alfabetismo.analfabetos.get_total()*100)/p.get_total_poblacion(),2)
             name = p.nombre
-            alfabetismo.append((name,percent))
+            alfa = round((p.alfabetismo.analfabetos.get_total()*100)/p.get_total_poblacion(),2)
+            cant_v = 0
+            for v in p.viviendas:
+                if v.tipo != 0 and v.tipo != 3:
+                    cant_v += v.cantidad
+            precarie = round((cant_v*100)/p.get_total_poblacion(),2)
+            cant_v = 0
+            for v in p.viviendas:
+                cant_v += v.cantidad
+            retrete = round((p.sanitario.sin_retrete*100)/cant_v,2)
+            alfabetismo.append((name,alfa,precarie,retrete))
         for i in range(len(alfabetismo)-1):
             for j in range(len(alfabetismo)-i-1):
                 if alfabetismo[j][1] > alfabetismo[j+1][1]:
                     alfabetismo[j], alfabetismo[j+1] = alfabetismo[j+1], alfabetismo[j]
+        x = []
+        y1 = []
+        y2 = []
         for item in alfabetismo:
-            print(item[0])
-            print('     h/v:',item[1])
+            x.append(item[1])
+            y1.append(item[2])
+            y2.append(item[3])
+        
+        n = len(x)
+        x = np.array(x)
+        y1 = np.array(y1)
+        y2 = np.array(y2)
+        sumx = sum(x)
+        sumy1 = sum(y1)
+        sumy2 = sum(y2)
+        sumx2 = sum(x*x)
+        sumxy1 = sum(x*y1)
+        sumxy2 = sum(x*y2)
+        promX = sumx/n
+        promY1 = sumy1/n
+        promY2 = sumy2/n
 
+        m1 = (sumx*sumy1 - n*sumxy1)/(sumx**2 - n*sumx2)
+        m2 = (sumx*sumy2 - n*sumxy2)/(sumx**2 - n*sumx2)
+        b1 = promY1 - m1*promX
+        b2 = promY2 - m2*promX
 
-        # x = [1, 2, 3, 4]
-        # y = [2, 3, 0, 0.5]
-        fig, ax = plt.subplots()
-        for item in alfabetismo:
-            ax.scatter(item[0],item[1],c='red')
-        plt.xlabel("Vivienda y retrete")
-        plt.ylabel("alfabetismo")
-        plt.title("Simple Scatter Plot")
+        # lo siguiente lo comente pq no se pa que es 
+        # no entiendo nada de estadistica 
+
+        # sumy12 = sum(y1*y1)
+        # sumy22 = sum(y2*y2)
+        # sigmax = np.sqrt(sumx2/n - promX**2)
+        # sigmay1 = np.sqrt(sumy12/n - promY1**2)
+        # sigmay2 = np.sqrt(sumy22/n - promY2**2)
+        # sigmaxy1 = sumxy1/n - promX*promY1
+        # sigmaxy2 = sumxy2/n - promX*promY2
+        # R21 = (sigmaxy1/(sigmax*sigmay1))**2
+        # R22 = (sigmaxy2/(sigmax*sigmay2))**2
+
+        # print(R21)
+        # print(R22)
+
+        plt.plot(x,y1,'o',label = 'vivienda precaria')
+        plt.plot(x,y2,'o',label = 'sin retrete')
+        plt.plot(x,m1*x+b1,label = 'Ajuste vivienda precaria')
+        plt.plot(x,m2*x+b2,label = 'Ajuste sin retrete')
+        plt.xlabel('porcentaje de analfabetismo')
+        plt.ylabel('porcentaje vivienda precaria y sin retrete')
+        plt.title("regresion lineal")  
+        plt.grid()
+        plt.legend()
         plt.show()
-
-    
 
 class Provincia:
     cod = None
@@ -293,7 +340,7 @@ arg.mostrar_porcentaje_vivendas_sin_retrete_por_provincia() # listo
 print("")
 arg.mostrar_porcentaje_vivienda_precaria_por_provincia() # listo
 print("")
-arg.mostrar_correlacion_alfabetismo_vs_vivienda_y_retrete() # en progreso
+arg.mostrar_correlacion_alfabetismo_vs_vivienda_y_retrete() # listo
 
 print("\n")
 
