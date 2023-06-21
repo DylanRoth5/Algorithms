@@ -12,9 +12,11 @@ def insertion_sort(array):
         
         # Ubicar el valor rescatado justo por delante del valor menor a este
         array[j + 1] = key
+        print(array)
 
 
-data = [9, 5, 1, 4, 3]
+data = [20, 11, 16, 9, 12, 14, 17, 19, 13, 15]
+
 print('Original: ')
 print(data)
 insertion_sort(data)

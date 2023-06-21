@@ -1,4 +1,4 @@
-lista = [6,5,3,1,8,7,2,4]
+lista = [20, 11, 16, 9, 12, 14, 17, 19, 13, 15]
 
 def ordenar_burbuja(lista):
     for i in range(len(lista)-1):
