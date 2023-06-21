@@ -31,6 +31,10 @@ ordenar_burbuja(lista)
 #ordenar(lista)
 print("Despúes: " + str(lista))
 
+# paso 2 : 
+# buble     [11, 16, 20, 9, 12, 14, 17, 19, 13, 15]
+# insertion [11, 16, 20, 9, 12, 14, 17, 19, 13, 15]
+
 """
 Ejercicios:
 1) crear una clase Persona con los atributos nombre y edad
