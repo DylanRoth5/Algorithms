@@ -22,3 +22,5 @@ print(data)
 insertion_sort(data)
 print('Ordenado: ')
 print(data)
+
+# [11, 16, 20, 9, 12, 14, 17, 19, 13, 15]

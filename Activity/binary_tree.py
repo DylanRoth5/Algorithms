@@ -94,7 +94,6 @@ def postorden(n):
 
 def anchura(n):
     # pasar nodo izquierdo
-    
     if(n.left):
         preorden(n.left)
     # pasar nodo derecho
@@ -113,8 +112,41 @@ abecedario.right = Node('C')
 abecedario.right.right = Node('F')
 abecedario.right.left = Node('E')    
 
-preorden(abecedario)
+# preorden(abecedario)
+# print('\n')
+# inorden(abecedario)
+# print('\n')
+# postorden(abecedario)
+
+words = Node('B')
+
+words.left = Node('U')
+words.right = Node('I')
+
+words.left.left = Node('E')
+words.right.left = Node('E')
+words.left.right = Node('R')
+words.right.right = Node('L')
+
+words.left.left.left = Node('N')
+words.right.left.left = Node('N')
+words.right.right.left = Node('B')
+words.left.right.right = Node('R')
+
+words.left.left.left.left = Node('O')
+words.left.left.left.right = Node('A')
+words.right.right.left.left = Node('A')
+words.left.right.right.left = Node('A')
+words.left.right.right.right = Node('O')
+
+
+words.left.left.left.right = Node('S')
+words.left.right.right.right = Node('S')
+words.right.right.left.left = Node('O')
+
 print('\n')
-inorden(abecedario)
+preorden(words)
 print('\n')
-postorden(abecedario)
+inorden(words)
+print('\n')
+postorden(words)
